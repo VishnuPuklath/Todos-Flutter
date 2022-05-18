@@ -17,7 +17,7 @@ class _TaskScreenState extends State<TaskScreen> {
           onPressed: () {
             showModalBottomSheet(
                 isScrollControlled: true,
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
                     topRight: Radius.circular(30),
