@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todos/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    String newTaskTitle = "";
     return Container(
       padding: EdgeInsets.all(30),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -17,6 +18,9 @@ class AddTaskScreen extends StatelessWidget {
           style: TextStyle(color: Colors.lightBlueAccent, fontSize: 30),
         ),
         TextField(
+          onChanged: ((value) {
+            newTaskTitle = value;
+          }),
           autofocus: true,
           textAlign: TextAlign.center,
         ),
@@ -28,7 +32,11 @@ class AddTaskScreen extends StatelessWidget {
           height: 50,
           child: ElevatedButton(
             style: ElevatedButton.styleFrom(primary: Colors.lightBlueAccent),
-            onPressed: () {},
+            onPressed: () {
+              Provider.of<TaskData>(context, listen: false)
+                  .addTask(newTaskTitle);
+              Navigator.pop(context);
+            },
             child: Text('Add'),
           ),
         ),
